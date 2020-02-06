@@ -3,7 +3,9 @@ const chalk = require("chalk");
 const redis = require("redis");
 const { promisify } = require("util");
 
-const redisClient = redis.createClient();
+const redisClient = redis.createClient({
+  host: "redis"
+});
 const multi = redisClient.multi();
 const exec = promisify(multi.exec.bind(multi));
 
