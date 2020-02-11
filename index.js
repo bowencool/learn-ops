@@ -30,7 +30,7 @@ app.use(async (ctx, next) => {
 // response
 app.use(async ctx => {
   const count = await incrAsync("count");
-  ctx.body = `Hello, you have been saw me ${count} times\n`;
+  ctx.body = `Hello, you have met me ${count} times\n`;
 });
 
 app.listen(3000, () => {
