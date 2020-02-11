@@ -6,8 +6,7 @@ const { promisify } = require("util");
 const redisClient = redis.createClient({
   host: "redis"
 });
-const multi = redisClient.multi();
-const exec = promisify(multi.exec.bind(multi));
+const incrAsync = promisify(redisClient.incr.bind(redisClient));
 
 const app = new Koa();
 
@@ -30,8 +29,7 @@ app.use(async (ctx, next) => {
 
 // response
 app.use(async ctx => {
-  multi.incr("count");
-  const count = await exec();
+  const count = await incrAsync("count");
   ctx.body = `Hello, you have been saw me ${count} times\n`;
 });
 
