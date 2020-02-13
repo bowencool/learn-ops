@@ -1,6 +1,4 @@
-FROM node
-ENV A=123
+FROM node:alpine
 WORKDIR /usr/src/app
-RUN yarn
 COPY . .
-CMD ["node", "index.js"]
+CMD ["node", "app.js"]
