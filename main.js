@@ -21,4 +21,12 @@ if (cluster.isMaster) {
     console.error("uncaughtException", err.message);
     process.exit(1);
   });
+  // 内存监控
+  setInterval(() => {
+    const mu = process.memoryUsage().rss;
+    if (mu > 5000000 * 8) {
+      console.log("memory", mu);
+      process.exit(1);
+    }
+  }, 5000);
 }
